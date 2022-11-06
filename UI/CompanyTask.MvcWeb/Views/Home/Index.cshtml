@@ -1,7 +1,17 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using Entity.Entities.Common
 
+
+@{
+    ViewData["Title"] = "Home Page";
+    var roles = TempData["roles"] as string[];
+}
+@if(roles !=null)
+{
+    foreach(var role in roles)
+    {
+        <h1>@role</h1>
+    }
+}
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>

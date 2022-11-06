@@ -1,7 +1,9 @@
 using DataAccess.Context;
 using Entity.Entities;
+using Entity.Entities.Common;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +13,13 @@ builder.Services.AddControllersWithViews();
 ///My
 builder.Services.AddDbContext<MvcAppContext>(b =>
 b.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
-builder.Services.AddIdentity<AppUser,IdentityRole>().AddEntityFrameworkStores<MvcAppContext>();
+builder.Services.AddIdentity<AppUser,AppRoles>().AddEntityFrameworkStores<MvcAppContext>();
+//*******************
+builder.Services.AddPersistenceService();
 
+
+
+//
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
